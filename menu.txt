@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Food Menu</title>
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle, #111, #000);
+    color: #fff;
+}
+
+.container{
+    max-width:700px;
+    margin:30px auto;
+    padding:25px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 18px;
+    box-shadow: 0 0 15px rgba(255,255,255,0.1);
+}
+
+h1{
+    text-align:center;
+    color:#ffcc66;
+    margin-bottom:20px;
+}
+
+.menu-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 15px;
+    margin:8px 0;
+    border-radius:10px;
+    background: rgba(0,0,0,0.25);
+    transition: 0.2s;
+}
+
+.menu-item:hover{
+    background: rgba(255,255,255,0.1);
+}
+
+.menu-item label{
+    cursor:pointer;
+    font-size:16px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:space-between;
+    margin-top:25px;
+}
+
+button{
+    padding:10px 25px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.confirm{ background: #28a745; color:white;}
+.next{ background: #1b4fbf; color:white;}
+.back{ background: #d35400; color:white;}
+
+button:hover{ opacity:0.9;}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="menu-title">🥢 Chinese Food Menu</h1>
+    <div id="menu-items">
+        <div class="menu-item"><label><input type="checkbox"> Veg Hakka Noodles</label><span>₹180</span></div>
+        <div class="menu-item"><label><input type="checkbox"> Chicken Manchurian</label><span>₹220</span></div>
+        <div class="menu-item"><label><input type="checkbox"> Spring Rolls</label><span>₹150</span></div>
+        <div class="menu-item"><label><input type="checkbox"> Fried Rice</label><span>₹170</span></div>
+        <div class="menu-item"><label><input type="checkbox"> Chilli Paneer</label><span>₹200</span></div>
+    </div>
+
+    <div class="buttons">
+        <button class="confirm" onclick="confirmOrder()">Confirm</button>
+        <button class="next" onclick="nextPage()">Next Page</button>
+    </div>
+</div>
+
+<script>
+// tracking which menu
+var currentMenu = 'chinese';
+
+// italian menu list
+var italianMenu = [
+    {name:'Margherita Pizza', price:250},
+    {name:'Pasta Alfredo', price:220},
+    {name:'Lasagna', price:280},
+    {name:'Garlic Bread', price:120},
+    {name:'Tiramisu', price:180}
+];
+
+// function for next page
+function nextPage(){
+    if(currentMenu == 'chinese'){
+        currentMenu = 'italian';
+        document.getElementById('menu-title').innerText = '🍝 Italian Food Menu';
+        var container = document.getElementById('menu-items');
+        container.innerHTML = ''; // clear old
+
+        for(var i=0; i<italianMenu.length; i++){
+            var div = document.createElement('div');
+            div.className = 'menu-item';
+
+            // making label and span
+            var lbl = document.createElement('label');
+            var chk = document.createElement('input');
+            chk.type = 'checkbox';
+            lbl.appendChild(chk);
+            lbl.appendChild(document.createTextNode(' ' + italianMenu[i].name));
+
+            var spn = document.createElement('span');
+            spn.innerText = '₹' + italianMenu[i].price;
+
+            div.appendChild(lbl);
+            div.appendChild(spn);
+            container.appendChild(div);
+        }
+
+        // add a back button manually
+        var btns = document.querySelector('.buttons');
+        if(!document.querySelector('.back')){
+            var backBtn = document.createElement('button');
+            backBtn.className = 'back';
+            backBtn.innerText = 'Back';
+            backBtn.onclick = previousPage;
+            btns.insertBefore(backBtn, btns.querySelector('.next'));
+        }
+    }
+}
+
+// back to chinese
+function previousPage(){
+    currentMenu = 'chinese';
+    document.getElementById('menu-title').innerText = '🥢 Chinese Food Menu';
+    var container = document.getElementById('menu-items');
+    container.innerHTML = '';
+
+    var chineseDishes = [
+        {name:'Veg Hakka Noodles', price:180},
+        {name:'Chicken Manchurian', price:220},
+        {name:'Spring Rolls', price:150},
+        {name:'Fried Rice', price:170},
+        {name:'Chilli Paneer', price:200}
+    ];
+
+    for(var i=0; i<chineseDishes.length; i++){
+        var div = document.createElement('div');
+        div.className = 'menu-item';
+
+        var lbl = document.createElement('label');
+        var chk = document.createElement('input');
+        chk.type = 'checkbox';
+        lbl.appendChild(chk);
+        lbl.appendChild(document.createTextNode(' ' + chineseDishes[i].name));
+
+        var spn = document.createElement('span');
+        spn.innerText = '₹' + chineseDishes[i].price;
+
+        div.appendChild(lbl);
+        div.appendChild(spn);
+        container.appendChild(div);
+    }
+
+    // remove back button
+    var backBtn = document.querySelector('.back');
+    if(backBtn) backBtn.remove();
+}
+
+// confirm order
+function confirmOrder(){
+    var selected = [];
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    for(var i=0; i<checkboxes.length; i++){
+        if(checkboxes[i].checked){
+            selected.push(checkboxes[i].parentNode.textContent.trim());
+        }
+    }
+
+    if(selected.length>0){
+        alert('You chose: ' + selected.join(', '));
+    } else {
+        alert('No items picked 😅');
+    }
+}
+</script>
+</body>
+</html>

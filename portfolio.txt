@@ -1,0 +1,117 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vedant Kubde | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f8;
+            color: #333;
+        }
+
+        header {
+            background-color: #1e293b;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+        }
+
+        header p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        section {
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #1e293b;
+            border-bottom: 2px solid #1e293b;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        footer {
+            background-color: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Vedant Kubde</h1>
+        <p>1st Year Student | Web Development Enthusiast</p>
+    </header>
+
+    <section>
+        <h2>About Me</h2>
+        <div class="card">
+            <p>
+                Hi, I’m Vedant Kubde. I am a first-year student who is passionate about web development.
+                I enjoy taking part in hackathons and building interesting projects using HTML and CSS.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Hackathon Experience</h2>
+        <div class="card">
+            <ul>
+                <li>Participated in 4 hackathons</li>
+                <li>Won 1 hackathon</li>
+                <li>Gained experience working under deadlines and in teams</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Skills</h2>
+        <div class="card">
+            <ul>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>Basic Responsive Design</li>
+                <li>Team Collaboration</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Vedant Kubde</p>
+    </footer>
+
+</body>
+</html>
+```
