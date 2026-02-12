@@ -1,196 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Food Menu</title>
-<style>
-body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    background: radial-gradient(circle, #111, #000);
-    color: #fff;
-}
+    <meta charset="UTF-8">
+    <title>South Indian Menu Card</title>
 
-.container{
-    max-width:700px;
-    margin:30px auto;
-    padding:25px;
-    background: rgba(255,255,255,0.07);
-    border-radius: 18px;
-    box-shadow: 0 0 15px rgba(255,255,255,0.1);
-}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            margin: 0;
+            padding: 0;
+        }
 
-h1{
-    text-align:center;
-    color:#ffcc66;
-    margin-bottom:20px;
-}
+        .menu-card {
+            width: 70%;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
 
-.menu-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:12px 15px;
-    margin:8px 0;
-    border-radius:10px;
-    background: rgba(0,0,0,0.25);
-    transition: 0.2s;
-}
+        h1 {
+            text-align: center;
+            color: #b22222;
+            margin-bottom: 20px;
+        }
 
-.menu-item:hover{
-    background: rgba(255,255,255,0.1);
-}
+        h2 {
+            color: #d2691e;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
 
-.menu-item label{
-    cursor:pointer;
-    font-size:16px;
-}
+        .menu-section {
+            margin-bottom: 25px;
+        }
 
-.buttons{
-    display:flex;
-    justify-content:space-between;
-    margin-top:25px;
-}
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 18px;
+        }
 
-button{
-    padding:10px 25px;
-    border:none;
-    border-radius:20px;
-    cursor:pointer;
-    font-size:15px;
-}
+        .price {
+            color: #333;
+            font-weight: bold;
+        }
 
-.confirm{ background: #28a745; color:white;}
-.next{ background: #1b4fbf; color:white;}
-.back{ background: #d35400; color:white;}
-
-button:hover{ opacity:0.9;}
-</style>
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h1 id="menu-title">🥢 Chinese Food Menu</h1>
-    <div id="menu-items">
-        <div class="menu-item"><label><input type="checkbox"> Veg Hakka Noodles</label><span>₹180</span></div>
-        <div class="menu-item"><label><input type="checkbox"> Chicken Manchurian</label><span>₹220</span></div>
-        <div class="menu-item"><label><input type="checkbox"> Spring Rolls</label><span>₹150</span></div>
-        <div class="menu-item"><label><input type="checkbox"> Fried Rice</label><span>₹170</span></div>
-        <div class="menu-item"><label><input type="checkbox"> Chilli Paneer</label><span>₹200</span></div>
+<div class="menu-card">
+
+    <h1>🌴 South Indian Menu Card 🌴</h1>
+
+    <div class="menu-section">
+        <h2>Breakfast Specials</h2>
+        <div class="menu-item"><span>Idli (2 pcs)</span> <span class="price">₹40</span></div>
+        <div class="menu-item"><span>Masala Dosa</span> <span class="price">₹80</span></div>
+        <div class="menu-item"><span>Vada</span> <span class="price">₹30</span></div>
+        <div class="menu-item"><span>Upma</span> <span class="price">₹50</span></div>
     </div>
 
-    <div class="buttons">
-        <button class="confirm" onclick="confirmOrder()">Confirm</button>
-        <button class="next" onclick="nextPage()">Next Page</button>
+    <div class="menu-section">
+        <h2>Main Meals</h2>
+        <div class="menu-item"><span>South Indian Thali</span> <span class="price">₹150</span></div>
+        <div class="menu-item"><span>Lemon Rice</span> <span class="price">₹70</span></div>
+        <div class="menu-item"><span>Sambar Rice</span> <span class="price">₹80</span></div>
+        <div class="menu-item"><span>Curd Rice</span> <span class="price">₹60</span></div>
     </div>
+
+    <div class="menu-section">
+        <h2>Beverages</h2>
+        <div class="menu-item"><span>Filter Coffee</span> <span class="price">₹25</span></div>
+        <div class="menu-item"><span>Masala Chai</span> <span class="price">₹20</span></div>
+        <div class="menu-item"><span>Buttermilk</span> <span class="price">₹15</span></div>
+    </div>
+
+    <footer>
+        Taste the tradition of South India!
+    </footer>
+
 </div>
 
-<script>
-// tracking which menu
-var currentMenu = 'chinese';
-
-// italian menu list
-var italianMenu = [
-    {name:'Margherita Pizza', price:250},
-    {name:'Pasta Alfredo', price:220},
-    {name:'Lasagna', price:280},
-    {name:'Garlic Bread', price:120},
-    {name:'Tiramisu', price:180}
-];
-
-// function for next page
-function nextPage(){
-    if(currentMenu == 'chinese'){
-        currentMenu = 'italian';
-        document.getElementById('menu-title').innerText = '🍝 Italian Food Menu';
-        var container = document.getElementById('menu-items');
-        container.innerHTML = ''; // clear old
-
-        for(var i=0; i<italianMenu.length; i++){
-            var div = document.createElement('div');
-            div.className = 'menu-item';
-
-            // making label and span
-            var lbl = document.createElement('label');
-            var chk = document.createElement('input');
-            chk.type = 'checkbox';
-            lbl.appendChild(chk);
-            lbl.appendChild(document.createTextNode(' ' + italianMenu[i].name));
-
-            var spn = document.createElement('span');
-            spn.innerText = '₹' + italianMenu[i].price;
-
-            div.appendChild(lbl);
-            div.appendChild(spn);
-            container.appendChild(div);
-        }
-
-        // add a back button manually
-        var btns = document.querySelector('.buttons');
-        if(!document.querySelector('.back')){
-            var backBtn = document.createElement('button');
-            backBtn.className = 'back';
-            backBtn.innerText = 'Back';
-            backBtn.onclick = previousPage;
-            btns.insertBefore(backBtn, btns.querySelector('.next'));
-        }
-    }
-}
-
-// back to chinese
-function previousPage(){
-    currentMenu = 'chinese';
-    document.getElementById('menu-title').innerText = '🥢 Chinese Food Menu';
-    var container = document.getElementById('menu-items');
-    container.innerHTML = '';
-
-    var chineseDishes = [
-        {name:'Veg Hakka Noodles', price:180},
-        {name:'Chicken Manchurian', price:220},
-        {name:'Spring Rolls', price:150},
-        {name:'Fried Rice', price:170},
-        {name:'Chilli Paneer', price:200}
-    ];
-
-    for(var i=0; i<chineseDishes.length; i++){
-        var div = document.createElement('div');
-        div.className = 'menu-item';
-
-        var lbl = document.createElement('label');
-        var chk = document.createElement('input');
-        chk.type = 'checkbox';
-        lbl.appendChild(chk);
-        lbl.appendChild(document.createTextNode(' ' + chineseDishes[i].name));
-
-        var spn = document.createElement('span');
-        spn.innerText = '₹' + chineseDishes[i].price;
-
-        div.appendChild(lbl);
-        div.appendChild(spn);
-        container.appendChild(div);
-    }
-
-    // remove back button
-    var backBtn = document.querySelector('.back');
-    if(backBtn) backBtn.remove();
-}
-
-// confirm order
-function confirmOrder(){
-    var selected = [];
-    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    for(var i=0; i<checkboxes.length; i++){
-        if(checkboxes[i].checked){
-            selected.push(checkboxes[i].parentNode.textContent.trim());
-        }
-    }
-
-    if(selected.length>0){
-        alert('You chose: ' + selected.join(', '));
-    } else {
-        alert('No items picked 😅');
-    }
-}
-</script>
 </body>
 </html>
